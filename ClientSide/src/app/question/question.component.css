@@ -14,3 +14,7 @@ li.card:hover{
 ol{
     padding: 0;
 }
+.card.selected {
+    background-color: forestgreen;
+    color: white;
+  }

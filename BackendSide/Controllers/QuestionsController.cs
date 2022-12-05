@@ -20,12 +20,12 @@ namespace BackendSide.Controllers
         }
 
         [HttpGet(Name = "GetQuestions")]
-        public IEnumerable<Question>? Get()
+        public string Get()
         {
             using StreamReader r = new("questions.json");
             string json = r.ReadToEnd();
-            var questions = JsonConvert.DeserializeObject<List<Question>>(json);
-            return questions?.ToArray();
+           // var questions = JsonConvert.DeserializeObject<List<Question>>(json);
+            return json;
         }
     }
 }

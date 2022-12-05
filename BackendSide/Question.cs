@@ -15,6 +15,6 @@ namespace BackendSide
     public class option
     {
         public string text;
-        public int score;
+        public string score;
     }
 }
