@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\roy.yadid@sap.com\\source\\repos\\QuestionnaireProject\\BackendSide\\BackendSide.csproj": {}
+    "C:\\Users\\roy.yadid@sap.com\\source\\repos\\QuizProject\\BackendSide\\BackendSide.csproj": {}
   },
   "projects": {
-    "C:\\Users\\roy.yadid@sap.com\\source\\repos\\QuestionnaireProject\\BackendSide\\BackendSide.csproj": {
+    "C:\\Users\\roy.yadid@sap.com\\source\\repos\\QuizProject\\BackendSide\\BackendSide.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\roy.yadid@sap.com\\source\\repos\\QuestionnaireProject\\BackendSide\\BackendSide.csproj",
+        "projectUniqueName": "C:\\Users\\roy.yadid@sap.com\\source\\repos\\QuizProject\\BackendSide\\BackendSide.csproj",
         "projectName": "BackendSide",
-        "projectPath": "C:\\Users\\roy.yadid@sap.com\\source\\repos\\QuestionnaireProject\\BackendSide\\BackendSide.csproj",
+        "projectPath": "C:\\Users\\roy.yadid@sap.com\\source\\repos\\QuizProject\\BackendSide\\BackendSide.csproj",
         "packagesPath": "C:\\Users\\roy.yadid@sap.com\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\roy.yadid@sap.com\\source\\repos\\QuestionnaireProject\\BackendSide\\obj\\",
+        "outputPath": "C:\\Users\\roy.yadid@sap.com\\source\\repos\\QuizProject\\BackendSide\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\roy.yadid@sap.com\\AppData\\Roaming\\NuGet\\NuGet.Config",
