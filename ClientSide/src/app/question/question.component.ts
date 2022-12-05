@@ -48,4 +48,16 @@ answer(option:any){
 setProgressPrecent(){
   this.progress=(((this.answers.size+1)/this.questionList.length)*100).toString();
 }
+
+reset(){
+  this.progress="0";
+  this.selectedOption=null;
+  this.answers = new Map<number, any>();
+}
+
+submit(){
+  this.progress="0";
+  this.selectedOption=null;
+  this.answers = new Map<number, any>();
+}
 }
