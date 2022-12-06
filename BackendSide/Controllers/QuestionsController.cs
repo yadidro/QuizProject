@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+using BackendSide.Data;
+using BackendSide.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
 namespace BackendSide.Controllers
 {
@@ -14,18 +10,23 @@ namespace BackendSide.Controllers
     {
         private readonly ILogger<QuestionsController> _logger;
 
+        Dictionary<int, Question> Questions = new Dictionary<int, Question>();
+        List<Question> ListQuestions=new List<Question>();
+
         public QuestionsController(ILogger<QuestionsController> logger)
         {
             _logger = logger;
         }
 
         [HttpGet(Name = "GetQuestions")]
-        public string Get()
+        public List<Question> Get()
         {
-            using StreamReader r = new("questions.json");
-            string json = r.ReadToEnd();
-           // var questions = JsonConvert.DeserializeObject<List<Question>>(json);
-            return json;
+            if (ListQuestions.Count == 0)
+            {
+                Questions = AppDb.Initilize();
+                ListQuestions = Questions.Values.ToList();
+            }
+            return ListQuestions;
         }
     }
 }

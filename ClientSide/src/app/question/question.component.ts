@@ -8,8 +8,9 @@ import { QuestionService } from '../service/question.service';
 })
 export class QuestionComponent {
   public name: string = '';
-  public questionList: any = [];
+  public questionList: any[] = [];
   public currentQuestion: number = 0;
+  //public keyQuestion: string = "1";
   public progress: string = '0';
   public selectedOption: any;
   answers = new Map<number, any>();
@@ -29,6 +30,7 @@ export class QuestionComponent {
   nextQuestion() {
     this.currentQuestion =
       (this.currentQuestion + 1) % this.questionList.length;
+    //this.keyQuestion=this.currentQuestion+1+"";
     this.selectedOption = this.answers.get(this.currentQuestion);
   }
 
@@ -36,13 +38,14 @@ export class QuestionComponent {
     this.currentQuestion = this.currentQuestion - 1;
     if (this.currentQuestion < 0)
       this.currentQuestion = this.questionList.length - 1;
+    //this.keyQuestion=this.currentQuestion+1+"";
     this.selectedOption = this.answers.get(this.currentQuestion);
   }
 
   answer(option: any) {
     this.selectedOption = option;
     if (!this.answers.has(this.currentQuestion)) this.setProgressPrecent();
-    this.answers.set(this.currentQuestion, option);
+      this.answers.set(this.currentQuestion, option);
   }
 
   setProgressPrecent() {
@@ -56,6 +59,7 @@ export class QuestionComponent {
     this.progress = '0';
     this.selectedOption = null;
     this.currentQuestion = 0;
+    //this.keyQuestion = "1"
     this.answers = new Map<number, any>();
   }
 
