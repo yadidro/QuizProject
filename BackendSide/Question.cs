@@ -8,8 +8,6 @@ namespace BackendSide
         public string questionText { get; set; }
 
         public List<option> options { get; set; }
-
-        public string explanation { get; set; }
     }
 
     public class option
