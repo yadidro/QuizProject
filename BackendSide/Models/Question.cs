@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
-namespace BackendSide
+namespace BackendSide.Models
 {
     public class Question
     {
-        public string questionText { get; set; }
+        public int Id { get; set; }
+        
+        public string? QuestionText { get; set; }
 
-        public List<option> options { get; set; }
-    }
-
-    public class option
-    {
-        public string text;
-        public string score;
+        public List<Option>? Options { get; set; }
     }
 }
