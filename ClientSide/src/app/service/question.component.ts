@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { QuestionService } from '../service/question.service';
-import { question, option } from '../models/question';
 
 @Component({
   selector: 'app-question',
@@ -10,11 +9,11 @@ import { question, option } from '../models/question';
 export class QuestionComponent {
   public name: string = '';
   public quizResult: string = '';
-  public questionList: question[] = [];
+  public questionList: any[] = [];
   public currentQuestion: number = 0;
   public progress: string = '0';
-  public selectedOption: option | undefined = { text: '', score: 0 };
-  answers = new Map<number, option>();
+  public selectedOption: any;
+  answers = new Map<number, any>();
 
   constructor(private questionService: QuestionService) {}
 
@@ -24,7 +23,7 @@ export class QuestionComponent {
   }
 
   getAllQuestions() {
-    this.questionService.getQuestionJson().subscribe((res: question[]) => {
+    this.questionService.getQuestionJson().subscribe((res: any) => {
       this.questionList = res;
     });
   }
@@ -57,20 +56,19 @@ export class QuestionComponent {
 
   reset() {
     this.progress = '0';
-    this.selectedOption = { text: '', score: 0 };
+    this.selectedOption = null;
     this.currentQuestion = 0;
     this.quizResult = '';
-    this.answers = new Map<number, option>();
+    this.answers = new Map<number, any>();
   }
 
   submit() {
-    let answersList: option[] = [];
+    let answersList = [];
     for (let i = 0; i < this.answers.size; i++) {
-      let value = this.answers.get(i);
-      if (value !== undefined) answersList.push(value);
+      answersList.push(this.answers.get(i));
     }
 
-    this.questionService.getQuizResult(answersList).subscribe((res: string) => {
+    this.questionService.getQuizResult(answersList).subscribe((res: any) => {
       this.quizResult = res;
     });
   }
