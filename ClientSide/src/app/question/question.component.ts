@@ -8,9 +8,9 @@ import { QuestionService } from '../service/question.service';
 })
 export class QuestionComponent {
   public name: string = '';
+  public quizResult: string = '';
   public questionList: any[] = [];
   public currentQuestion: number = 0;
-  //public keyQuestion: string = "1";
   public progress: string = '0';
   public selectedOption: any;
   answers = new Map<number, any>();
@@ -27,10 +27,10 @@ export class QuestionComponent {
       this.questionList = res;
     });
   }
+
   nextQuestion() {
     this.currentQuestion =
       (this.currentQuestion + 1) % this.questionList.length;
-    //this.keyQuestion=this.currentQuestion+1+"";
     this.selectedOption = this.answers.get(this.currentQuestion);
   }
 
@@ -38,14 +38,13 @@ export class QuestionComponent {
     this.currentQuestion = this.currentQuestion - 1;
     if (this.currentQuestion < 0)
       this.currentQuestion = this.questionList.length - 1;
-    //this.keyQuestion=this.currentQuestion+1+"";
     this.selectedOption = this.answers.get(this.currentQuestion);
   }
 
   answer(option: any) {
     this.selectedOption = option;
     if (!this.answers.has(this.currentQuestion)) this.setProgressPrecent();
-      this.answers.set(this.currentQuestion, option);
+    this.answers.set(this.currentQuestion, option);
   }
 
   setProgressPrecent() {
@@ -59,13 +58,18 @@ export class QuestionComponent {
     this.progress = '0';
     this.selectedOption = null;
     this.currentQuestion = 0;
-    //this.keyQuestion = "1"
+    this.quizResult = '';
     this.answers = new Map<number, any>();
   }
 
   submit() {
-    this.progress = '0';
-    this.selectedOption = null;
-    this.answers = new Map<number, any>();
+    let answersList = [];
+    for (let i = 0; i < this.answers.size; i++) {
+      answersList.push(this.answers.get(i));
+    }
+
+    this.questionService.getQuizResult(answersList).subscribe((res: any) => {
+      this.quizResult = res;
+    });
   }
 }

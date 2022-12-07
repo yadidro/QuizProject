@@ -2,14 +2,6 @@ USE [master]
 GO
 /****** Object:  Database [QuizDB]    Script Date: 06/12/2022 23:18:40 ******/
 CREATE DATABASE [QuizDB]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'QuizDB', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\QuizDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'QuizDB_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\QuizDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
- WITH CATALOG_COLLATION = DATABASE_DEFAULT
-GO
-ALTER DATABASE [QuizDB] SET COMPATIBILITY_LEVEL = 150
 GO
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
 begin
@@ -194,9 +186,9 @@ INSERT [dbo].[Questions] ([Id], [QuestionText]) VALUES (1, N'Where is Mario supp
 GO
 INSERT [dbo].[Questions] ([Id], [QuestionText]) VALUES (2, N'Excluding thumbs, how many fingers does Mario have?')
 GO
-INSERT [dbo].[Questions] ([Id], [QuestionText]) VALUES (3, N'What was Princess Peachâ€™s original name?')
+INSERT [dbo].[Questions] ([Id], [QuestionText]) VALUES (3, N'What was Princess Peach’s original name?')
 GO
-INSERT [dbo].[Questions] ([Id], [QuestionText]) VALUES (4, N'In the original Super Mario Bros. for NES, what colour are Marioâ€™s dungarees?')
+INSERT [dbo].[Questions] ([Id], [QuestionText]) VALUES (4, N'In the original Super Mario Bros. for NES, what colour are Mario’s dungarees?')
 GO
 INSERT [dbo].[Questions] ([Id], [QuestionText]) VALUES (5, N'When is Mario Day celebrated?')
 GO

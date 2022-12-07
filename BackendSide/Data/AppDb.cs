@@ -12,7 +12,7 @@ namespace BackendSide.Data
         {
             SqlDataReader rdr = null;
             Dictionary<int, Question>  Questions = new Dictionary<int, Question>();
-            using (var conn = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=QuizDB;Integrated Security=SSPI;"))
+            using (var conn = new SqlConnection("data source=W-PF2X55Z1;initial catalog=QuizDB;trusted_connection=true"))
             using (var command = new SqlCommand("GetQuestions", conn)
             {
                 CommandType = CommandType.StoredProcedure

@@ -29,7 +29,6 @@ C:\Users\roy.yadid@sap.com\source\repos\QuestionnaireProject\BackendSide\bin\Deb
 C:\Users\roy.yadid@sap.com\source\repos\QuestionnaireProject\BackendSide\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\roy.yadid@sap.com\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\roy.yadid@sap.com\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\appsettings.json
-C:\Users\roy.yadid@sap.com\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\questions.json
 C:\Users\roy.yadid@sap.com\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\BackendSide.exe
 C:\Users\roy.yadid@sap.com\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\BackendSide.deps.json
 C:\Users\roy.yadid@sap.com\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\BackendSide.runtimeconfig.json

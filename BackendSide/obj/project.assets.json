@@ -10358,19 +10358,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\97252\\.nuget\\packages\\": {}
+    "C:\\Users\\roy.yadid@sap.com\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\97252\\source\\repos\\QuizProject\\BackendSide\\BackendSide.csproj",
+      "projectUniqueName": "C:\\Users\\roy.yadid@sap.com\\source\\repos\\QuizProject\\BackendSide\\BackendSide.csproj",
       "projectName": "BackendSide",
-      "projectPath": "C:\\Users\\97252\\source\\repos\\QuizProject\\BackendSide\\BackendSide.csproj",
-      "packagesPath": "C:\\Users\\97252\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\97252\\source\\repos\\QuizProject\\BackendSide\\obj\\",
+      "projectPath": "C:\\Users\\roy.yadid@sap.com\\source\\repos\\QuizProject\\BackendSide\\BackendSide.csproj",
+      "packagesPath": "C:\\Users\\roy.yadid@sap.com\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\roy.yadid@sap.com\\source\\repos\\QuizProject\\BackendSide\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\97252\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\roy.yadid@sap.com\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10378,7 +10378,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://baget.gigya.net/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
@@ -10444,7 +10445,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

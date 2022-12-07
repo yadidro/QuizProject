@@ -1,0 +1,12 @@
+export interface IQuizModels {
+  option: {
+    text: String;
+    score: Number;
+  };
+
+  question: {
+    id: String;
+    questionText: String;
+    options: [String, Number];
+  };
+}

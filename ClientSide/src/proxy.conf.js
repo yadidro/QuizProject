@@ -1,8 +1,9 @@
 const PROXY_CONFIG = [
   {
     context: [
-      "/questions",
+      "/questions","/quizResult"
     ],
+
     target: "https://localhost:7055",
     secure: false
   }
