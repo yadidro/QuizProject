@@ -587,3 +587,5 @@ C:\Users\97252\source\repos\QuizProject\BackendSide\obj\Debug\net6.0\refint\Back
 C:\Users\97252\source\repos\QuizProject\BackendSide\obj\Debug\net6.0\BackendSide.pdb
 C:\Users\97252\source\repos\QuizProject\BackendSide\obj\Debug\net6.0\BackendSide.genruntimeconfig.cache
 C:\Users\97252\source\repos\QuizProject\BackendSide\obj\Debug\net6.0\ref\BackendSide.dll
+C:\Users\roy.yadid@sap.com\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\App.config
+C:\Users\roy.yadid@sap.com\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\BackendSide.dll.config

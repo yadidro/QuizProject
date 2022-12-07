@@ -1,7 +1,7 @@
+using System.Collections.Generic;
+using System.Configuration;
 using BackendSide.Models;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Data.SqlClient;
-using Newtonsoft.Json;
 using System.Data;
 
 namespace BackendSide.Data
@@ -12,7 +12,7 @@ namespace BackendSide.Data
         {
             SqlDataReader rdr = null;
             Dictionary<int, Question>  Questions = new Dictionary<int, Question>();
-            using (var conn = new SqlConnection("data source=W-PF2X55Z1;initial catalog=QuizDB;trusted_connection=true"))
+            using (var conn = new SqlConnection(System.Configuration.ConfigurationManager.AppSettings.Get("ConnectionString")))
             using (var command = new SqlCommand("GetQuestions", conn)
             {
                 CommandType = CommandType.StoredProcedure
