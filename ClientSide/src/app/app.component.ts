@@ -9,11 +9,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public questions?: any[];
 
-  // constructor(http: HttpClient) {
-  //   http.get<any[]>('/questions').subscribe((result) => {
-  //     this.questions = result;
-  //   });
-  // }
-
   title = 'ClientSide';
 }

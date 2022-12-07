@@ -9,37 +9,41 @@ namespace BackendSide.Data
     {
         public static Dictionary<int, Question> Initilize()
         {
-            SqlDataReader rdr = null;
-            Dictionary<int, Question>  Questions = new Dictionary<int, Question>();
-            using (var conn = new SqlConnection(System.Configuration.ConfigurationManager.AppSettings.Get("ConnectionString")))
-            using (var command = new SqlCommand("GetQuestions", conn)
+            SqlDataReader? rdr = null;
+            Dictionary<int, Question> Questions = new Dictionary<int, Question>();
+            using var conn =
+                new SqlConnection(System.Configuration.ConfigurationManager.AppSettings.Get("ConnectionString"));
+            using var command = new SqlCommand("GetQuestions", conn)
             {
                 CommandType = CommandType.StoredProcedure
-            })
+            };
+            conn.Open();
+            rdr = command.ExecuteReader();
+            if (rdr != null)
             {
-                conn.Open();
-                rdr = command.ExecuteReader();
                 while (rdr.Read())
                 {
-                    int id = (int)rdr["Id"];
+                    int id = (int) rdr["Id"];
                     if (Questions.ContainsKey(id))
                     {
-                        Questions[id].Options.Add(new Option() { Text = (string)rdr["Text"], Score = (int?)rdr["Score"] });
+                        Questions[id].Options?.Add(new Option()
+                            {Text = (string) rdr["Text"], Score = (int?) rdr["Score"]});
                     }
                     else
                     {
                         Questions.Add(id, new Question
-                        {
-                            Id = id,
-                            Options = new List<Option>() {new Option() { Text = (string)rdr["Text"], Score = (int?)rdr["Score"] } },
-                            QuestionText = rdr["QuestionText"].ToString()
-                        }
+                            {
+                                Id = id,
+                                Options = new List<Option>()
+                                    {new Option() {Text = (string) rdr["Text"], Score = (int?) rdr["Score"]}},
+                                QuestionText = rdr["QuestionText"].ToString()
+                            }
                         );
                     }
                 }
             }
+
             return Questions;
         }
-         
     }
 }

@@ -1,4 +1,4 @@
-"# QuizProject" 
+"# QuizProject"
 for client side:
 Angular
 1.npm install
@@ -7,5 +7,7 @@ Angular
 MS SQL:
 1.SqlQuery1 file contains the DB_Tables_SP
 
-.net:
+.Net:
 1.on app config change connection string to the relvent one, you can use script SQLConnetionString if you need
+
+Run backend side and then client side
