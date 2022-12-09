@@ -1,3 +1,5 @@
+using BackendSide.Data;
+using BackendSide.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -5,7 +7,8 @@ using Microsoft.Extensions.Hosting;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddSingleton<IAppDb, AppDb>();
+builder.Services.AddSingleton<IQuestionRepository, QuestionRepository>();
 builder.Services.AddMvc();
 
 builder.Services.AddControllers();

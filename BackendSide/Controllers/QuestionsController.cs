@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using BackendSide.Data;
 using BackendSide.Models;
+using BackendSide.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackendSide.Controllers
@@ -12,20 +12,17 @@ namespace BackendSide.Controllers
     [Route("")]
     public class QuestionsController : ControllerBase
     {
-        Dictionary<int, Question> Questions = new Dictionary<int, Question>();
-        List<Question> ListQuestions = new List<Question>();
-
+        private readonly IQuestionRepository _questionsRepository;
+        public QuestionsController(IQuestionRepository questionsRepository)
+        {
+            _questionsRepository = questionsRepository;
+        }
+        
         [Route("questions")]
         [HttpGet]
-        public List<Question> Get()
+        public IEnumerable<Question> Get()
         {
-            if (ListQuestions.Count == 0)
-            {
-                Questions = AppDb.Initilize();
-                ListQuestions = Questions.Values.ToList();
-            }
-
-            return ListQuestions;
+            return _questionsRepository.GetQuestions();
         }
 
         [Route("quizResult")]

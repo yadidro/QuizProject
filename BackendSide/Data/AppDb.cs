@@ -5,12 +5,17 @@ using System.Data;
 
 namespace BackendSide.Data
 {
-    public class AppDb
+    public interface IAppDb
     {
-        public static Dictionary<int, Question> Initilize()
+        Dictionary<int, Question> GetQuestionsFromDb();
+    }
+
+    public class AppDb : IAppDb
+    {
+        public Dictionary<int, Question> GetQuestionsFromDb()
         {
             SqlDataReader? rdr = null;
-            Dictionary<int, Question> Questions = new Dictionary<int, Question>();
+            Dictionary<int, Question> questions = new Dictionary<int, Question>();
             using var conn =
                 new SqlConnection(System.Configuration.ConfigurationManager.AppSettings.Get("ConnectionString"));
             using var command = new SqlCommand("GetQuestions", conn)
@@ -24,14 +29,14 @@ namespace BackendSide.Data
                 while (rdr.Read())
                 {
                     int id = (int) rdr["Id"];
-                    if (Questions.ContainsKey(id))
+                    if (questions.ContainsKey(id))
                     {
-                        Questions[id].Options?.Add(new Option()
+                        questions[id].Options?.Add(new Option()
                             {Text = (string) rdr["Text"], Score = (int?) rdr["Score"]});
                     }
                     else
                     {
-                        Questions.Add(id, new Question
+                        questions.Add(id, new Question
                             {
                                 Id = id,
                                 Options = new List<Option>()
@@ -43,7 +48,7 @@ namespace BackendSide.Data
                 }
             }
 
-            return Questions;
+            return questions;
         }
     }
 }
