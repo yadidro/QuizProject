@@ -29,9 +29,16 @@ export class QuestionComponent {
   }
 
   getAllQuestions() {
-    this.questionService.getQuestionJson().subscribe((res: question[]) => {
-      this.questionList = res;
-    });
+    this.questionService.getQuestionJson().subscribe(
+      (res: question[]) => {
+        this.questionList = res;
+        this.textError = '';
+      },
+      (err) => {
+        console.log(err);
+        this.textError = 'An error has occured, please try again later';
+      }
+    );
   }
 
   nextQuestion() {
