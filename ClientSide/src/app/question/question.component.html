@@ -52,7 +52,7 @@
     <div class="option">
       <ol *ngFor="let option of questionList[currentQuestion]?.options">
         <li
-          [class.selected]="optionSelected(option)"
+          [class.selected]="isOptionSelected(option)"
           class="card"
           type="button"
           (click)="answer(option)"

@@ -1,6 +1,6 @@
 import { QuestionService } from '../service/question.service';
 import { question, option, answer } from '../models/question';
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
@@ -14,7 +14,6 @@ export class QuestionComponent {
   public questionList: question[] = [];
   public currentQuestion: number = 0;
   public progress: string = '0';
-  public selectedOptions: option[] = [];
   answers = new Map<number, option[]>();
   public currentComment: string = '';
   textError: string = '';
@@ -44,36 +43,54 @@ export class QuestionComponent {
   nextQuestion() {
     this.currentQuestion =
       (this.currentQuestion + 1) % this.questionList.length;
-    this.selectedOptions = this.answers.get(this.currentQuestion) ?? [];
 
     this.currentComment = this.questionList[this.currentQuestion].comment ?? '';
+    this.textErrorComment = '';
   }
 
   previousQuestion() {
     this.currentQuestion = this.currentQuestion - 1;
     if (this.currentQuestion < 0)
       this.currentQuestion = this.questionList.length - 1;
-    this.selectedOptions = this.answers.get(this.currentQuestion) ?? [];
 
     this.currentComment = this.questionList[this.currentQuestion].comment ?? '';
+    this.textErrorComment = '';
   }
 
   answer(option: option) {
-    if (this.questionList[this.currentQuestion].type === 'Single') {
-      this.selectedOptions?.pop();
+    if (!this.answers.has(this.currentQuestion)) {
+      this.newAnswerHandle(option);
+    } else {
+      if (this.questionList[this.currentQuestion].type === 'Single') {
+        this.singleAnswerHandle(option);
+      } else {
+        this.multipleAnswerHandle(option);
+      }
     }
-    if (this.optionSelected(option)) {
-      this.selectedOptions?.pop();
-      if (this.selectedOptions.length == 0) {
+  }
+
+  private multipleAnswerHandle(option: option) {
+    if (this.isOptionSelected(option)) {
+      this.answers.get(this.currentQuestion)?.pop();
+      if (this.answers.get(this.currentQuestion)?.length == 0) {
         this.answers.delete(this.currentQuestion);
-        this.setProgressPrecent();
       }
     } else {
-      this.selectedOptions?.push(option);
-
-      this.answers.set(this.currentQuestion, this.selectedOptions);
-      this.setProgressPrecent();
+      this.answers.get(this.currentQuestion)?.push(option);
     }
+    this.setProgressPrecent();
+  }
+
+  private singleAnswerHandle(option: option) {
+    this.answers.get(this.currentQuestion)?.pop();
+    this.answers.get(this.currentQuestion)?.push(option);
+  }
+
+  private newAnswerHandle(option: option) {
+    let selectedOptions: option[] = [];
+    selectedOptions.push(option);
+    this.answers.set(this.currentQuestion, selectedOptions);
+    this.setProgressPrecent();
   }
 
   setProgressPrecent() {
@@ -89,7 +106,6 @@ export class QuestionComponent {
     }
 
     this.progress = '0';
-    this.selectedOptions = [];
     this.currentQuestion = 0;
     this.quizResult = '';
     this.answers = new Map<number, option[]>();
@@ -97,11 +113,12 @@ export class QuestionComponent {
     this.textErrorComment = '';
   }
 
-  optionSelected(option: option) {
+  isOptionSelected(option: option) {
     return (
-      this.selectedOptions.find(
-        (selectedOption) => selectedOption.text === option.text
-      ) != undefined
+      this.answers
+        .get(this.currentQuestion)
+        ?.find((selectedOption) => selectedOption.text === option.text) !=
+      undefined
     );
   }
 
