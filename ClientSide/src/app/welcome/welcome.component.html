@@ -16,7 +16,7 @@
   <div class="col-md-4 my-3">
     <label for="">Enter your id: </label>
     <input #id type="text" class="form-control" [disabled]="savedId != ''" />
-    <button class="btn btn-primary" (click)="saveId()">save id</button>
+    <button class="btn btn-primary" (click)="saveId()">Save id</button>
     <div class="textError" *ngIf="textError != ''">
       <span style="font-style: italic">{{ textError }}</span>
     </div>
