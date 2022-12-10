@@ -9,6 +9,7 @@ export class WelcomeComponent {
   @ViewChild('name') namekey!: ElementRef;
   @ViewChild('id') idkey!: ElementRef;
   public savedId: string = '';
+  textError: string = '';
   constructor() {}
 
   ngOnInit(): void {}
@@ -18,6 +19,12 @@ export class WelcomeComponent {
   }
 
   saveId() {
-    this.savedId = this.idkey.nativeElement.value;
+    if (this.checkIdValid(this.idkey.nativeElement.value))
+      this.savedId = this.idkey.nativeElement.value;
+    else this.textError = 'Id should contain numbers only';
+  }
+
+  checkIdValid(id: string): boolean {
+    return /^$|^[0-9 ]+$/.test(id);
   }
 }

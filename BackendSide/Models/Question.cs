@@ -12,9 +12,4 @@ namespace BackendSide.Models
         
         public string? Type { get; set; }
     }
-    
-    public enum QuestionType {
-        Single,
-        Multiple
-    }
 }

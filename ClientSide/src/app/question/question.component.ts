@@ -17,6 +17,8 @@ export class QuestionComponent {
   public selectedOptions: option[] = [];
   answers = new Map<number, option[]>();
   public currentComment: string = '';
+  textError: string = '';
+  textErrorComment: string = '';
 
   constructor(private questionService: QuestionService) {}
 
@@ -85,6 +87,7 @@ export class QuestionComponent {
     this.quizResult = '';
     this.answers = new Map<number, option[]>();
     this.currentComment = '';
+    this.textErrorComment = '';
   }
 
   optionSelected(option: option) {
@@ -109,16 +112,29 @@ export class QuestionComponent {
       answersForEachQuestionScores.push(answer);
     }
 
-    this.questionService
-      .getQuizResult(answersForEachQuestionScores)
-      .subscribe((res: string) => {
+    this.questionService.getQuizResult(answersForEachQuestionScores).subscribe(
+      (res: string) => {
         this.quizResult = res;
-      });
+        this.textError = '';
+      },
+      (err) => {
+        console.log(err);
+        this.textError = 'An error has occured, please try again later';
+      }
+    );
+  }
+
+  checkTextValid(text: string): boolean {
+    return /^$|^[a-zA-ZÀ-ÖØ-öø-ÿ0-9 ]+$/.test(text);
   }
 
   saveComment() {
-    this.questionList[this.currentQuestion].comment =
-      this.commentkey.nativeElement.value;
-    this.currentComment = this.commentkey.nativeElement.value;
+    if (this.checkTextValid(this.commentkey.nativeElement.value)) {
+      this.questionList[this.currentQuestion].comment =
+        this.commentkey.nativeElement.value;
+      this.currentComment = this.commentkey.nativeElement.value;
+      this.textErrorComment = '';
+    } else
+      this.textErrorComment = 'Text should not contain any special character';
   }
 }

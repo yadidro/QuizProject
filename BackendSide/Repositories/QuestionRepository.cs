@@ -38,7 +38,7 @@ namespace BackendSide.Repositories
             _appDb.SaveCommentsForUser(answers);
         }
         
-        public void SaveScoreForUser(string? userId, double score)
+        public void SaveScoreForUser(string userId, double score)
         {
             _appDb.SaveScoreForUser(userId,score);
         }
