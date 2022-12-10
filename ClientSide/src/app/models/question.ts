@@ -18,8 +18,3 @@ export interface answer {
   questionType: string;
   comment: string;
 }
-
-export const enum questionType {
-  single,
-  multiple,
-}

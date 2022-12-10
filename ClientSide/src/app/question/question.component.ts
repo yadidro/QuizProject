@@ -99,18 +99,7 @@ export class QuestionComponent {
   }
 
   submit() {
-    let answersForEachQuestionScores: answer[] = [];
-    for (let i = 0; i < this.answers.size; i++) {
-      let options = this.answers.get(i) ?? [];
-      let answer: answer = {
-        userId: this.userId,
-        questionId: this.questionList[i].id,
-        chosenOptions: options,
-        questionType: this.questionList[i].type,
-        comment: this.questionList[i].comment,
-      };
-      answersForEachQuestionScores.push(answer);
-    }
+    let answersForEachQuestionScores: answer[] = this.buildAnswers();
 
     this.questionService.getQuizResult(answersForEachQuestionScores).subscribe(
       (res: string) => {
@@ -126,6 +115,22 @@ export class QuestionComponent {
 
   checkTextValid(text: string): boolean {
     return /^$|^[a-zA-ZÀ-ÖØ-öø-ÿ0-9 ]+$/.test(text);
+  }
+
+  buildAnswers() {
+    let answersForEachQuestionScores: answer[] = [];
+    for (let i = 0; i < this.answers.size; i++) {
+      let options = this.answers.get(i) ?? [];
+      let answer: answer = {
+        userId: this.userId,
+        questionId: this.questionList[i].id,
+        chosenOptions: options,
+        questionType: this.questionList[i].type,
+        comment: this.questionList[i].comment,
+      };
+      answersForEachQuestionScores.push(answer);
+    }
+    return answersForEachQuestionScores;
   }
 
   saveComment() {
