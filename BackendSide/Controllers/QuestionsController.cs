@@ -34,6 +34,7 @@ namespace BackendSide.Controllers
                 if (!ModelState.IsValid) throw new Exception("Wrong body parameter");
 
                 _questionsRepository.SaveCommentsForUser(answersForEachQuestionScores);
+                
                 var score = CalculateScore(answersForEachQuestionScores);
 
                 _questionsRepository.SaveScoreForUser(answersForEachQuestionScores[0].UserId, score);
