@@ -13,7 +13,7 @@ export class QuestionService {
     return this.http.get<question[]>('/questions');
   }
 
-  getQuizResult(answers: option[]) {
-    return this.http.post<string>('/quizResult', answers);
+  getQuizResult(answersForEachQuestionScores: question[]) {
+    return this.http.post<string>('/quizResult', answersForEachQuestionScores);
   }
 }

@@ -43,13 +43,13 @@
     </div>
     <div class="question">
       <div class="card">
-        <h3>{{ questionList[currentQuestion].questionText }}</h3>
+        <h3>{{ questionList[currentQuestion]?.questionText }}</h3>
       </div>
     </div>
     <div class="option">
       <ol *ngFor="let option of questionList[currentQuestion]?.options">
         <li
-          [class.selected]="option === selectedOption"
+          [class.selected]="optionSelected(option)"
           class="card"
           type="button"
           (click)="answer(option)"
@@ -58,6 +58,22 @@
         </li>
       </ol>
     </div>
+    <div
+      class="comment"
+      *ngIf="questionList[currentQuestion]?.type === 'Multiple'"
+    >
+      <label for="">Enter a comment: </label>
+      <input
+        #comment
+        type="text"
+        class="form-control"
+        value="{{ currentComment }}"
+      />
+      <button class="btn btn-primary" (click)="saveComment()">
+        save comment
+      </button>
+    </div>
+
     <div class="d-flex justify-content-between">
       <button type="button" (click)="previousQuestion()">
         <span><<</span>

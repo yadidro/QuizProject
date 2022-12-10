@@ -41,7 +41,8 @@ namespace BackendSide.Data
                                 Id = id,
                                 Options = new List<Option>()
                                     {new Option() {Text = (string) rdr["Text"], Score = (int?) rdr["Score"]}},
-                                QuestionText = rdr["QuestionText"].ToString()
+                                QuestionText = rdr["QuestionText"].ToString(),
+                                Type = rdr["Type"].ToString().Replace( " ", "" )
                             }
                         );
                     }

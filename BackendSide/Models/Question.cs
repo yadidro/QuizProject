@@ -9,5 +9,12 @@ namespace BackendSide.Models
         public string? QuestionText { get; set; }
 
         public List<Option>? Options { get; set; }
+        
+        public string? Type { get; set; }
+    }
+    
+    public enum QuestionType {
+        Single,
+        Multiple
     }
 }
