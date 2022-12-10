@@ -8,6 +8,10 @@ namespace BackendSide.Repositories
     public interface IQuestionRepository
     {
         IEnumerable<Question> GetQuestions();
+        
+        void SaveCommentsForUser(Answer[] answers);
+        
+        void SaveScoreForUser(string? userId, double score);
     }
 
     public class QuestionRepository : IQuestionRepository
@@ -27,6 +31,16 @@ namespace BackendSide.Repositories
             _listQuestions = _appDb.GetQuestionsFromDb();
 
             return _listQuestions.Values.ToList();
+        }
+        
+        public void SaveCommentsForUser(Answer[] answers)
+        {
+            _appDb.SaveCommentsForUser(answers);
+        }
+        
+        public void SaveScoreForUser(string? userId, double score)
+        {
+            _appDb.SaveScoreForUser(userId,score);
         }
     }
 }

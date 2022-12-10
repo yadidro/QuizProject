@@ -27,33 +27,37 @@ namespace BackendSide.Controllers
 
         [Route("quizResult")]
         [HttpPost]
-        public string PostQuizResult([FromBody] Question[] answersForEachQuestionScores)
+        public string PostQuizResult([FromBody] Answer[] answersForEachQuestionScores)
         {
             if (!ModelState.IsValid) return "wrong body";
+            _questionsRepository.SaveCommentsForUser(answersForEachQuestionScores);
             double sum = 0;
-            foreach (Question answer in answersForEachQuestionScores)
+            foreach (Answer answer in answersForEachQuestionScores)
             {
-                if (answer.Type == "Multiple")
+                if (answer.QuestionType == "Multiple")
                 {
-                    if (answer?.Options?.Count == 1)
+                    if (answer?.ChosenOptions?.Count == 1)
                     {
-                        sum = sum + answer.Options[0].Score??0 * 0.5;
+                        sum = sum + answer.ChosenOptions[0].Score??0 * 0.5;
                     }
-                    if (answer?.Options?.Count > 1)
+                    if (answer?.ChosenOptions?.Count > 1)
                     {
-                        foreach (var option in answer.Options)
+                        foreach (var option in answer.ChosenOptions)
                         {
                             sum = sum + option.Score??0;
                         }
                     }
                 }
 
-                if (answer is {Type: "Single"})
-                    if (answer.Options != null)
-                        sum = sum + answer.Options[0].Score ?? 0;
+                if (answer is {QuestionType: "Single"})
+                    if (answer.ChosenOptions != null)
+                        sum = sum + answer.ChosenOptions[0].Score ?? 0;
             }
-            var result = Math.Round((double) sum / (10 * answersForEachQuestionScores.Length) * 10, 2);
-            return result.ToString(CultureInfo.InvariantCulture);
+            var score = Math.Round((double) sum / (10 * answersForEachQuestionScores.Length) * 10, 2);
+            
+            _questionsRepository.SaveScoreForUser(answersForEachQuestionScores[0].UserId,score);
+            
+            return score.ToString(CultureInfo.InvariantCulture);
         }
 }
 
