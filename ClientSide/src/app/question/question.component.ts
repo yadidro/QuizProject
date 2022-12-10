@@ -37,7 +37,7 @@ export class QuestionComponent {
       (this.currentQuestion + 1) % this.questionList.length;
     this.selectedOptions = this.answers.get(this.currentQuestion) ?? [];
 
-    this.currentComment = this.questionList[this.currentQuestion].comment;
+    this.currentComment = this.questionList[this.currentQuestion].comment ?? '';
   }
 
   previousQuestion() {
@@ -46,7 +46,7 @@ export class QuestionComponent {
       this.currentQuestion = this.questionList.length - 1;
     this.selectedOptions = this.answers.get(this.currentQuestion) ?? [];
 
-    this.currentComment = this.questionList[this.currentQuestion].comment;
+    this.currentComment = this.questionList[this.currentQuestion].comment ?? '';
   }
 
   answer(option: option) {
