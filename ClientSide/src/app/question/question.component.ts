@@ -9,6 +9,7 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 export class QuestionComponent {
   @ViewChild('comment') commentkey!: ElementRef;
   public name: string = '';
+  public userId: string = '';
   public quizResult: string = '';
   public questionList: question[] = [];
   public currentQuestion: number = 0;
@@ -21,6 +22,7 @@ export class QuestionComponent {
 
   ngOnInit(): void {
     this.name = localStorage.getItem('name')!;
+    this.userId = localStorage.getItem('id')!;
     this.getAllQuestions();
   }
 
@@ -98,7 +100,7 @@ export class QuestionComponent {
     for (let i = 0; i < this.answers.size; i++) {
       let options = this.answers.get(i) ?? [];
       let answer: answer = {
-        userId: '11111',
+        userId: this.userId,
         questionId: this.questionList[i].id,
         chosenOptions: options,
         questionType: this.questionList[i].type,

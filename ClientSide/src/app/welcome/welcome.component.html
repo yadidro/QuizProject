@@ -13,7 +13,13 @@
     <label for="">Enter your name: </label>
     <input #name type="text" class="form-control" />
   </div>
+  <div class="col-md-4 my-3">
+    <label for="">Enter your id: </label>
+    <input #id type="text" class="form-control" [disabled]="savedId != ''" />
+    <button class="btn btn-primary" (click)="saveId()">save id</button>
+  </div>
   <button
+    [disabled]="savedId == ''"
     class="btn btn-primary btn-lg"
     routerLink="/question"
     (click)="startQuiz()"
