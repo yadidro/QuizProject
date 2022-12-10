@@ -1,5 +1,5 @@
 import { QuestionService } from '../service/question.service';
-import { question, option, questionType } from '../models/question';
+import { question, option, answer } from '../models/question';
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 @Component({
   selector: 'app-question',
@@ -94,17 +94,17 @@ export class QuestionComponent {
   }
 
   submit() {
-    let answersForEachQuestionScores: question[] = [];
+    let answersForEachQuestionScores: answer[] = [];
     for (let i = 0; i < this.answers.size; i++) {
       let options = this.answers.get(i) ?? [];
-      let question: question = {
-        questionText: this.questionList[i].questionText,
-        id: this.questionList[i].id,
-        options: options,
-        type: this.questionList[i].type,
+      let answer: answer = {
+        userId: '11111',
+        questionId: this.questionList[i].id,
+        chosenOptions: options,
+        questionType: this.questionList[i].type,
         comment: this.questionList[i].comment,
       };
-      answersForEachQuestionScores.push(question);
+      answersForEachQuestionScores.push(answer);
     }
 
     this.questionService
