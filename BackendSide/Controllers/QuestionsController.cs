@@ -13,16 +13,24 @@ namespace BackendSide.Controllers
     public class QuestionsController : ControllerBase
     {
         private readonly IQuestionRepository _questionsRepository;
+
         public QuestionsController(IQuestionRepository questionsRepository)
         {
             _questionsRepository = questionsRepository;
         }
-        
+
         [Route("questions")]
         [HttpGet]
-        public IEnumerable<Question> Get()
+        public IActionResult Get()
         {
-            return _questionsRepository.GetQuestions();
+            try
+            {
+                return Ok(_questionsRepository.GetQuestions());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [Route("quizResult")]
@@ -34,12 +42,12 @@ namespace BackendSide.Controllers
                 if (!ModelState.IsValid) throw new Exception("Wrong body parameter");
 
                 _questionsRepository.SaveCommentsForUser(answersForEachQuestionScores);
-                
+
                 var score = CalculateScore(answersForEachQuestionScores);
 
                 _questionsRepository.SaveScoreForUser(answersForEachQuestionScores[0].UserId, score);
 
-                 return Ok(score.ToString(CultureInfo.InvariantCulture));
+                return Ok(score.ToString(CultureInfo.InvariantCulture));
             }
             catch (Exception e)
             {
@@ -89,5 +97,4 @@ namespace BackendSide.Controllers
             return sum;
         }
     }
-
 }
