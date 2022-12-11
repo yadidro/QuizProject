@@ -1,13 +1,90 @@
+USE [master]
+GO
+/****** Object:  Database [QuizDB]    Script Date: 11/12/2022 9:52:13 ******/
+CREATE DATABASE [QuizDB]
+ CONTAINMENT = NONE
+GO
+ALTER DATABASE [QuizDB] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [QuizDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [QuizDB] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [QuizDB] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [QuizDB] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [QuizDB] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [QuizDB] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [QuizDB] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [QuizDB] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [QuizDB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [QuizDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [QuizDB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [QuizDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [QuizDB] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [QuizDB] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [QuizDB] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [QuizDB] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [QuizDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [QuizDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [QuizDB] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [QuizDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [QuizDB] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [QuizDB] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [QuizDB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [QuizDB] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [QuizDB] SET  MULTI_USER 
+GO
+ALTER DATABASE [QuizDB] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [QuizDB] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [QuizDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [QuizDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [QuizDB] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [QuizDB] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'QuizDB', N'ON'
+GO
+ALTER DATABASE [QuizDB] SET QUERY_STORE = OFF
+GO
 USE [QuizDB]
 GO
-/****** Object:  UserDefinedTableType [dbo].[UserCommentsType]    Script Date: 10/12/2022 16:59:42 ******/
+/****** Object:  UserDefinedTableType [dbo].[UserCommentsType]    Script Date: 11/12/2022 9:52:13 ******/
 CREATE TYPE [dbo].[UserCommentsType] AS TABLE(
 	[QuestionId] [int] NOT NULL,
 	[Comment] [nvarchar](max) NOT NULL,
 	[UserId] [nvarchar](max) NOT NULL
 )
 GO
-/****** Object:  Table [dbo].[Comments]    Script Date: 10/12/2022 16:59:42 ******/
+/****** Object:  Table [dbo].[Comments]    Script Date: 11/12/2022 9:52:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -23,7 +100,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Options]    Script Date: 10/12/2022 16:59:42 ******/
+/****** Object:  Table [dbo].[Options]    Script Date: 11/12/2022 9:52:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -39,7 +116,7 @@ CREATE TABLE [dbo].[Options](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Questions]    Script Date: 10/12/2022 16:59:42 ******/
+/****** Object:  Table [dbo].[Questions]    Script Date: 11/12/2022 9:52:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -54,7 +131,7 @@ CREATE TABLE [dbo].[Questions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Scores]    Script Date: 10/12/2022 16:59:42 ******/
+/****** Object:  Table [dbo].[Scores]    Script Date: 11/12/2022 9:52:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -84,6 +161,52 @@ GO
 INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (6, 10, N'fdfd', N'11111')
 GO
 INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (7, 10, N'fdfd', N'11111')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (8, 10, N'hghgg', N'11111')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (9, 10, N'Some comment', N'305022311')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (10, 10, N'Some comment', N'305022311')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (11, 10, N'gfgf', N'305022311')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (12, 10, N'gfgf', N'gf')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (13, 10, N'ds', N'305022311')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (14, 10, N'hghg', N'305022311')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (15, 10, N'jhjhh', N'7767676')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (16, 10, N'ghhjgjh', N'7676')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (17, 9, N'jhjh', N'6565')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (18, 10, N'jhjh', N'6565')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (19, 9, N'bvbv', N'6565')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (20, 10, N'iuuu', N'6565')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (21, 9, N'ytyt', N'6565')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (22, 10, N'ytt', N'6565')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (23, 9, N'gf', N'45343')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (24, 10, N'bgv', N'45343')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (25, 9, N'ghf', N'5454')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (26, 10, N'gf', N'5454')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (27, 9, N'hghgh', N'5454')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (28, 10, N'kjkj', N'5454')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (29, 9, N'gfgf', N'656565')
+GO
+INSERT [dbo].[Comments] ([Id], [QuestionId], [Comment], [UserId]) VALUES (30, 10, N'gfgf', N'656565')
 GO
 SET IDENTITY_INSERT [dbo].[Comments] OFF
 GO
@@ -183,13 +306,45 @@ INSERT [dbo].[Questions] ([Id], [QuestionText], [Type]) VALUES (7, N'Which of th
 GO
 INSERT [dbo].[Questions] ([Id], [QuestionText], [Type]) VALUES (8, N'How many physical retail Nintendo Switch games (including games that require a physical purchase) contain the word ''Mario'' in the title?', N'Single    ')
 GO
-INSERT [dbo].[Questions] ([Id], [QuestionText], [Type]) VALUES (9, N'What is the best-selling Mario game of all time?', N'Single    ')
+INSERT [dbo].[Questions] ([Id], [QuestionText], [Type]) VALUES (9, N'What is the best-selling Mario game of all time?', N'Multiple  ')
 GO
 INSERT [dbo].[Questions] ([Id], [QuestionText], [Type]) VALUES (10, N'Which of these roles has Mario appeared as in a game?', N'Multiple  ')
 GO
 SET IDENTITY_INSERT [dbo].[Scores] ON 
 GO
 INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (1, N'11111', CAST(5.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (2, N'11111', CAST(5.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (3, N'305022311', CAST(5.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (4, N'305022311', CAST(4.40 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (5, N'305022311', CAST(6.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (6, N'gf', CAST(4.70 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (7, N'305022311', CAST(4.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (8, N'305022311', CAST(5.70 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (9, N'7767676', CAST(5.50 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (10, N'7676', CAST(5.40 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (11, N'6565', CAST(5.40 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (12, N'6565', CAST(5.20 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (13, N'6565', CAST(6.60 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (14, N'45343', CAST(7.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (15, N'5454', CAST(5.80 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (16, N'5454', CAST(6.20 AS Decimal(18, 2)))
+GO
+INSERT [dbo].[Scores] ([Id], [UserId], [Score]) VALUES (17, N'656565', CAST(4.40 AS Decimal(18, 2)))
 GO
 SET IDENTITY_INSERT [dbo].[Scores] OFF
 GO
@@ -210,7 +365,7 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[Options] CHECK CONSTRAINT [FK_Options_Questions]
 GO
-/****** Object:  StoredProcedure [dbo].[GetQuestions]    Script Date: 10/12/2022 16:59:42 ******/
+/****** Object:  StoredProcedure [dbo].[GetQuestions]    Script Date: 11/12/2022 9:52:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -231,7 +386,7 @@ BEGIN
     FROM Options join Questions ON Id = QuestionId
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SaveCommentsForUser]    Script Date: 10/12/2022 16:59:42 ******/
+/****** Object:  StoredProcedure [dbo].[SaveCommentsForUser]    Script Date: 11/12/2022 9:52:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -251,7 +406,7 @@ BEGIN
         SELECT QuestionId,Comment,UserId FROM @UserCommentsType
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SaveScoreForUser]    Script Date: 10/12/2022 16:59:42 ******/
+/****** Object:  StoredProcedure [dbo].[SaveScoreForUser]    Script Date: 11/12/2022 9:52:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -277,4 +432,8 @@ BEGIN
     [Score])
 VALUES (@UserId, @Score)
 END
+GO
+USE [master]
+GO
+ALTER DATABASE [QuizDB] SET  READ_WRITE 
 GO
