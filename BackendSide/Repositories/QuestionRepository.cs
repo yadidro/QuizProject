@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BackendSide.Data;
+﻿using BackendSide.Data;
 using BackendSide.Models;
 
 namespace BackendSide.Repositories
@@ -12,6 +10,8 @@ namespace BackendSide.Repositories
         void SaveCommentsForUser(Answer[] answers);
         
         void SaveScoreForUser(string? userId, double score);
+
+        double CalculateScore(Answer[] answersForEachQuestionScores);
     }
 
     public class QuestionRepository : IQuestionRepository
@@ -41,6 +41,48 @@ namespace BackendSide.Repositories
         public void SaveScoreForUser(string userId, double score)
         {
             _appDb.SaveScoreForUser(userId,score);
+        }
+
+        public double CalculateScore(Answer[] answersForEachQuestionScores)
+        {
+            double sum = 0;
+            foreach (Answer answer in answersForEachQuestionScores)
+            {
+                if (answer.QuestionType == "Multiple")
+                {
+                    sum = SumMultipleQuestion(answer, sum);
+                }
+
+                if (answer is { QuestionType: "Single" }) sum = SumSingleQuestion(answer, sum);
+            }
+
+            var score = Math.Round((double)sum / (answersForEachQuestionScores.Length), 2);
+            return score;
+        }
+
+        private static double SumSingleQuestion(Answer answer, double sum)
+        {
+            if (answer.ChosenOptions != null)
+                sum = sum + answer.ChosenOptions[0].Score ?? 0;
+            return sum;
+        }
+
+        private static double SumMultipleQuestion(Answer answer, double sum)
+        {
+            if (answer?.ChosenOptions?.Count == 1)
+            {
+                sum = sum + answer.ChosenOptions[0].Score ?? 0 * 0.5;
+            }
+
+            if (answer?.ChosenOptions?.Count > 1)
+            {
+                foreach (var option in answer.ChosenOptions)
+                {
+                    sum = sum + option.Score ?? 0;
+                }
+            }
+
+            return sum;
         }
     }
 }

@@ -306,7 +306,6 @@ C:\Users\roy.yadid@sap.com\source\repos\QuizProject\BackendSide\bin\Debug\net6.0
 C:\Users\roy.yadid@sap.com\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\97252\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\97252\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\appsettings.json
-C:\Users\97252\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\questions.json
 C:\Users\97252\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\BackendSide.exe
 C:\Users\97252\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\BackendSide.deps.json
 C:\Users\97252\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\BackendSide.runtimeconfig.json
@@ -589,3 +588,5 @@ C:\Users\97252\source\repos\QuizProject\BackendSide\obj\Debug\net6.0\BackendSide
 C:\Users\97252\source\repos\QuizProject\BackendSide\obj\Debug\net6.0\ref\BackendSide.dll
 C:\Users\roy.yadid@sap.com\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\App.config
 C:\Users\roy.yadid@sap.com\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\BackendSide.dll.config
+C:\Users\97252\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\App.config
+C:\Users\97252\source\repos\QuizProject\BackendSide\bin\Debug\net6.0\BackendSide.dll.config

@@ -49,18 +49,12 @@
         <h3>{{ questionList[currentQuestion]?.questionText }}</h3>
       </div>
     </div>
-    <div class="option">
-      <ol *ngFor="let option of questionList[currentQuestion]?.options">
-        <li
-          [class.selected]="isOptionSelected(option)"
-          class="card"
-          type="button"
-          (click)="answer(option)"
-        >
-          <span>{{ option.text }}</span>
-        </li>
-      </ol>
-    </div>
+    <app-option
+  [currentQuestion]="currentQuestion"
+  [answers]="answers"
+  [questionList]="questionList"
+  (setProgressPrecent)="setProgressPrecent()">
+</app-option>
     <div
       class="comment"
       *ngIf="questionList[currentQuestion]?.type === 'Multiple'"
