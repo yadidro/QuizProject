@@ -1,12 +1,20 @@
 <div class="option">
-    <ol *ngFor="let option of questionList[currentQuestion]?.options">
-      <li
-        [class.selected]="isOptionSelected(option)"
-        class="card"
-        type="button"
-        (click)="answer(option)"
-      >
-        <span>{{ option.text }}</span>
-      </li>
-    </ol>
+  <ol *ngFor="let option of questionList[currentQuestion]?.options">
+    <li [class.selected]="isOptionSelected(option)" class="card" type="button" (click)="answer(option)">
+      <span>{{ option.text }}</span>
+    </li>
+  </ol>
+</div>
+<div class="comment" *ngIf="questionList[currentQuestion]?.type === 'Multiple'">
+  <label for="">Enter a comment: </label>
+  <input #comment type="text" class="form-control" value="{{ this.questionList[this.currentQuestion].comment }}" />
+  <button class="btn btn-primary" (click)="saveComment()">
+    save comment
+  </button>
+  <div class="CommentSaved" *ngIf="this.questionList[this.currentQuestion].comment != ''">
+    <label> Comment saved!</label>
   </div>
+  <div class="textErrorComment" *ngIf="textErrorComment != ''">
+    <span style="font-style: italic">{{ textErrorComment }}</span>
+  </div>
+</div>

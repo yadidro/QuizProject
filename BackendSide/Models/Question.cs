@@ -11,5 +11,7 @@ namespace BackendSide.Models
         public List<Option>? Options { get; set; }
         
         public string? Type { get; set; }
+
+        public string Comment { get; set; }
     }
 }

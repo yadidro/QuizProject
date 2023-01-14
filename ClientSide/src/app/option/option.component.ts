@@ -1,4 +1,4 @@
-import { Component, Input, Output , EventEmitter } from '@angular/core';
+import { Component, Input, Output , EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { question, option } from '../models/question';
 
 @Component({
@@ -7,10 +7,13 @@ import { question, option } from '../models/question';
   styleUrls: ['./option.component.css']
 })
 export class OptionComponent {
+  @ViewChild('comment') commentkey!: ElementRef;
   @Input() currentQuestion = 0;
   @Input() answers = new Map<number, option[]>();
   @Input()  questionList: question[] = [];
   @Output() setProgressPrecent = new EventEmitter();
+  @Output() setTextErrorComment = new EventEmitter<string>();
+  @Input()  textErrorComment = '';
 
   isOptionSelected(option: option) {
     return (
@@ -55,5 +58,18 @@ export class OptionComponent {
     selectedOptions.push(option);
     this.answers.set(this.currentQuestion, selectedOptions);
     this.setProgressPrecent.emit();
+  }
+
+  checkTextValid(text: string): boolean {
+    return /^$|^[a-zA-ZÀ-ÖØ-öø-ÿ0-9 ]+$/.test(text);
+  }
+  
+  saveComment() {
+    if (this.checkTextValid(this.commentkey.nativeElement.value)) {
+      this.questionList[this.currentQuestion].comment =
+        this.commentkey.nativeElement.value;
+        this.setTextErrorComment.emit('');
+    } else
+      this.setTextErrorComment.emit('Text should not contain any special character');
   }
 }

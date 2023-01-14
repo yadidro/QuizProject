@@ -114,7 +114,8 @@ namespace BackendSide.Data
                         Options = new List<Option>()
                             {new Option() {Text = (string) rdr["Text"], Score = (int?) rdr["Score"]}},
                         QuestionText = rdr["QuestionText"].ToString(),
-                        Type = rdr["Type"].ToString().Replace(" ", "")
+                        Type = rdr["Type"].ToString().Replace(" ", ""),
+                        Comment=string.Empty
                     }
                 );
             }

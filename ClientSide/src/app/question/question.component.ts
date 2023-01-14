@@ -1,13 +1,13 @@
 import { QuestionService } from '../service/question.service';
 import { question, option, answer } from '../models/question';
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css'],
 })
 export class QuestionComponent {
-  @ViewChild('comment') commentkey!: ElementRef;
+  
   public name: string = '';
   public userId: string = '';
   public quizResult: string = '';
@@ -15,9 +15,8 @@ export class QuestionComponent {
   public currentQuestion: number = 0;
   public progress: string = '0';
   answers = new Map<number, option[]>();
-  public currentComment: string = '';
   textError: string = '';
-  textErrorComment: string = '';
+  public textErrorComment = '';
 
   constructor(private questionService: QuestionService) {}
 
@@ -44,7 +43,6 @@ export class QuestionComponent {
     this.currentQuestion =
       (this.currentQuestion + 1) % this.questionList.length;
 
-    this.currentComment = this.questionList[this.currentQuestion].comment ?? '';
     this.textErrorComment = '';
   }
 
@@ -53,7 +51,6 @@ export class QuestionComponent {
     if (this.currentQuestion < 0)
       this.currentQuestion = this.questionList.length - 1;
 
-    this.currentComment = this.questionList[this.currentQuestion].comment ?? '';
     this.textErrorComment = '';
   }
 
@@ -73,7 +70,6 @@ export class QuestionComponent {
     this.currentQuestion = 0;
     this.quizResult = '';
     this.answers = new Map<number, option[]>();
-    this.currentComment = '';
     this.textErrorComment = '';
   }
 
@@ -92,10 +88,6 @@ export class QuestionComponent {
     );
   }
 
-  checkTextValid(text: string): boolean {
-    return /^$|^[a-zA-ZÀ-ÖØ-öø-ÿ0-9 ]+$/.test(text);
-  }
-
   buildAnswers() {
     let answersForEachQuestionScores: answer[] = [];
     for (let i = 0; i < this.answers.size; i++) {
@@ -112,13 +104,8 @@ export class QuestionComponent {
     return answersForEachQuestionScores;
   }
 
-  saveComment() {
-    if (this.checkTextValid(this.commentkey.nativeElement.value)) {
-      this.questionList[this.currentQuestion].comment =
-        this.commentkey.nativeElement.value;
-      this.currentComment = this.commentkey.nativeElement.value;
-      this.textErrorComment = '';
-    } else
-      this.textErrorComment = 'Text should not contain any special character';
+  setTextErrorComment(textErrorComment: string)
+  {
+    this.textErrorComment = textErrorComment;
   }
 }
