@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./question.component.css'],
 })
 export class QuestionComponent {
-  
+
   public name: string = '';
   public userId: string = '';
   public quizResult: string = '';
@@ -18,7 +18,7 @@ export class QuestionComponent {
   textError: string = '';
   public textErrorComment = '';
 
-  constructor(private questionService: QuestionService) {}
+  constructor(private questionService: QuestionService) { }
 
   ngOnInit(): void {
     this.name = localStorage.getItem('name')!;
@@ -104,8 +104,7 @@ export class QuestionComponent {
     return answersForEachQuestionScores;
   }
 
-  setTextErrorComment(textErrorComment: string)
-  {
+  setTextErrorComment(textErrorComment: string) {
     this.textErrorComment = textErrorComment;
   }
 }
